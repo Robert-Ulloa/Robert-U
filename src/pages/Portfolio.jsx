@@ -1,5 +1,7 @@
 import React from 'react';
 import '../styles/Portfolio.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShareSquare } from '@fortawesome/free-solid-svg-icons'; 
 
 const projects = [
   {
@@ -59,7 +61,7 @@ function Portfolio() {
               <h4>{project.title}</h4>
               <p>{project.description}</p>
               <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
-                <i className="fas fa-share-square"></i>
+                <FontAwesomeIcon icon={faShareSquare} /> 
               </a>
             </div>
           </div>
