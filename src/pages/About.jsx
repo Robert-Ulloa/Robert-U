@@ -1,10 +1,12 @@
 import React from "react";
+import '../styles/About.css';
+
 
 function About() {
     return (
       <section className="about" id="about">
         <div className="about-img">
-          <img src="assets/images/aboutMe.png" alt="About Me" />
+          <img src="src/assets/images/aboutMe.png" alt="About Me" />
         </div>
   
         <div className="about-content">
