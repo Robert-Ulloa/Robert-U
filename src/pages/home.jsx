@@ -1,8 +1,8 @@
 import React from 'react';
 import '../styles/Home.css';
-// Import FontAwesomeIcon and specific square icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareGithub, faLinkedin, faSquareInstagram, faSquareFacebook } from '@fortawesome/free-brands-svg-icons';
+import profileImage from '../assets/images/profile1.png';  // Correct image import
 
 function Home() {
   return (
@@ -32,7 +32,7 @@ function Home() {
       </div>
 
       <div className="home-img">
-        <img src="src/assets/images/profile1.png" alt="Profile" />
+        <img src={profileImage} alt="Profile" />  {/* Updated image usage */}
       </div>
     </section>
   );
