@@ -1,12 +1,13 @@
 import React from 'react';
+import '../styles/Home.css'
 
 function Home() {
   return (
     <section className="home" id="home">
       <div className="home-content">
-        <h3>Hello, I'm</h3>
+        <h3>Hello, I am</h3>
         <h1>Roberto Ulloa</h1>
-        <h3>And I'm a <span>Software Developer</span></h3>
+        <h3>And I am a <span>Software Developer</span></h3>
         <p>Passionate about constant learning and growth, I like to bring creativity and diversity to my software development career. 
           My goal is to continue enhancing my skills while helping others along the way.
         </p>
