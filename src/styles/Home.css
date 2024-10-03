@@ -25,6 +25,7 @@ span {
 
 .home-img img {
     width: 25vw;
+    max-width: 300px;
     animation: floatImage 4s ease-in-out infinite;
 }
 
@@ -61,4 +62,25 @@ span {
     background: var(--main-color);
     color: var(--snd-bg-color);
     box-shadow: 0 0 1rem var(--main-color);
+}
+
+
+@media (min-width: 768px) {
+    .home {
+        flex-direction: row;
+        padding: 10rem 9% 2rem;
+    }
+
+    .home-content h3 {
+        font-size: 3.2rem;
+    }
+
+    .home-content h1 {
+        font-size: 5.6rem;
+    }
+
+    .home-img img {
+        width: 25vw;
+        margin-top: 0;
+    }
 }

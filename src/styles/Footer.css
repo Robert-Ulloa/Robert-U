@@ -16,6 +16,8 @@
     color: var(--text-color);
     transition: color 0.3s ease;
   }
+  .social-icons {
+    justify-content: flex-end;
   
   .social-icons a:hover {
     color: var(--main-color);
