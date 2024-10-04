@@ -32,7 +32,7 @@ function Home() {
       </div>
 
       <div className="home-img">
-        <img src={profileImage} alt="Profile" />  {/* Updated image usage */}
+        <img src={profileImage} alt="Profile" /> 
       </div>
     </section>
   );
