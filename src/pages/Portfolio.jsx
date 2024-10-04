@@ -3,6 +3,15 @@ import '../styles/Portfolio.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShareSquare } from '@fortawesome/free-solid-svg-icons'; 
 
+// Import images
+import popcornImage from '../assets/images/Popcornpicks.png';
+import rpcImage from '../assets/images/RPC.png';
+import weatherImage from '../assets/images/weather.png';
+import blogImage from '../assets/images/blog.png';
+import taskBoardImage from '../assets/images/task board.png';
+import webDesignImage from '../assets/images/1.png';
+
+
 const projects = [
   {
     title: 'PopcornPicks',

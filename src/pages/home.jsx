@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareGithub, faLinkedin, faSquareInstagram, faSquareFacebook } from '@fortawesome/free-brands-svg-icons';
-import profileImage from '../assets/images/profile1.png';  // Correct image import
+import profileImage from '../assets/images/profile1.png';  
 
 function Home() {
   return (
