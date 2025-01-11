@@ -22,7 +22,7 @@ function Home() {
           <a href="https://www.linkedin.com/in/roberto-antonio-ulloa-cruz-30135b317/">
             <FontAwesomeIcon icon={faLinkedin} size="2x" />
           </a> 
-          <a href="mailto:orberto@robertoulloa.com">
+          <a href="mailto:roberto@robertoulloa.com">
             <FontAwesomeIcon icon={faSquareEnvelope} size="2x" />
           </a> 
         </div>
