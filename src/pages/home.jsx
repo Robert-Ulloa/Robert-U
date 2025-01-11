@@ -21,12 +21,9 @@ function Home() {
           <a href="https://www.linkedin.com/in/roberto-antonio-ulloa-cruz-30135b317/">
             <FontAwesomeIcon icon={faLinkedin} size="2x" />
           </a> 
-          <a href="https://www.instagram.com/rob.ulloac">
-            <FontAwesomeIcon icon={faSquareInstagram} size="2x" />
+          <a href="mailto:roanuc8@gmail.com">
+            <FontAwesomeIcon icon={faSquareEnvelope} size="2x" />
           </a> 
-          <a href="https://www.facebook.com/share/sEhQQoWc9ywQ5FNm/">
-            <FontAwesomeIcon icon={faSquareFacebook} size="2x" />
-          </a>
         </div>
         <a href="https://docs.google.com/document/d/1s3rTxkAxYEGnGXW60GKdj9qJkR2rrJU_-CL5cgodq5s/edit?usp=sharing" className="btn">Download CV</a> 
       </div>
