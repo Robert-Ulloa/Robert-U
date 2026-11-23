@@ -10,7 +10,7 @@ export const navItems = [
 ];
 
 export const proofPoints = [
-  { value: 125, prefix: '+', suffix: '%', label: 'Orders after the Nimble app launched' },
+  { value: 35, prefix: '+', suffix: '%', label: 'Orders after the Nimble app launched' },
   { text: 'iOS + Android', label: 'Live app shipped to both stores' },
   { text: 'Square POS', label: 'Catalog, inventory & payments' },
   { text: 'QA-first', label: 'API, accessibility & regression tested' },
@@ -26,7 +26,7 @@ export const featuredProject = {
   eyebrow: 'Featured case study · Live product',
   summary:
     'A mobile ordering platform for a Chicago café, taken from first commit to the App Store and Google Play. I built the customer app, the API and the admin tools, and tested every release.',
-  metric: { value: 125, label: 'increase in orders after launch' },
+  metric: { value: 35, label: 'increase in orders after launch' },
   highlights: [
     'React Native (Expo) app for iOS and Android, with a Next.js API and admin dashboard behind it',
     'Square as the single source of truth for menu, inventory and payments, kept in sync with verified webhooks',

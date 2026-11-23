@@ -150,7 +150,7 @@ export default function Home() {
             <p className="hero-intro intro-fade" style={{ '--d': '.55s' }}>
               I&apos;m Roberto. I take web and mobile products from first commit to the App Store, test them properly
               along the way, and dig into the data when the numbers don&apos;t add up. My latest launch, a live ordering
-              app built on React Native, Next.js and Square POS, grew the café&apos;s orders by 125%.
+              app built on React Native, Next.js and Square POS, grew the café&apos;s orders by 35%.
             </p>
             <div className="hero-actions intro-fade" style={{ '--d': '.7s' }}>
               <Link className="button button-primary" to="/#work">See my work <ArrowDown /></Link>
@@ -168,7 +168,7 @@ export default function Home() {
             <div className="portrait-badge glass">
               <span className="badge-label">Latest launch</span>
               <strong>Nimble Chicago</strong>
-              <span>+125% orders</span>
+              <span>+35% orders</span>
             </div>
             <div className="portrait-chip glass" aria-hidden="true">
               <span className="chip-dot" /> tests passing

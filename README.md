@@ -15,7 +15,7 @@ The source code for this portfolio is available on GitHub: [https://github.com/R
 - **Selected work**: A featured Nimble Chicago case study plus supporting projects.
 - **Services, toolkit and experience**: Development, QA, release and data-analysis strengths.
 - **Blog**: Short engineering write-ups at `/blog`, stored in `src/data/posts.js`.
-- **Contact form**: Netlify Forms handling (no email address is published on the site).
+- **Contact form**: Netlify Forms handling (no email address is published on the site). Requires **Form detection** to be enabled in Netlify (Site configuration → Forms), followed by a redeploy.
 - **CV download**: A public PDF version of the CV.
 - **Dark theme with motion**: Ambient background, scroll reveals and cursor-follow card glow, all disabled for users who prefer reduced motion.
 
