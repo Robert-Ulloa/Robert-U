@@ -1,93 +1,101 @@
 import { useEffect, useState } from 'react';
-import profileImage from './assets/images/profile1.png';
+import profileImage from './assets/profile.webp';
 
+const email = 'roanuc8@gmail.com';
 const githubUrl = 'https://github.com/Robert-Ulloa';
 const linkedinUrl = 'https://www.linkedin.com/in/roberto-antonio-ulloa-cruz-30135b317/';
+const cvUrl = '/Roberto-Ulloa-CV.pdf';
+
+const navItems = [
+  { id: 'work', label: 'Work' },
+  { id: 'services', label: 'Services' },
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+];
+
+const proofPoints = [
+  { value: 'iOS + Android', label: 'Live app shipped to both stores' },
+  { value: 'Square POS', label: 'Catalog, inventory & payments' },
+  { value: 'QA-first', label: 'API, accessibility & regression tested' },
+];
+
+const featuredProject = {
+  title: 'Nimble Chicago',
+  eyebrow: 'Featured case study · Live product',
+  summary:
+    'A mobile ordering platform for a Chicago café, taken from first commit to the App Store and Google Play. I built the customer app, the API and the admin tools, and tested every release.',
+  highlights: [
+    'React Native (Expo) app for iOS and Android, with a Next.js API and admin dashboard behind it',
+    'Square as the single source of truth for menu, inventory and payments, kept in sync with verified webhooks',
+    'Over-the-air updates so JavaScript fixes reach customers without waiting on app-store review',
+    'Admin tooling for scheduled push notifications, plus investigation of live Square data mismatches',
+  ],
+  tags: ['React Native', 'Next.js', 'PostgreSQL', 'Square API', 'Expo EAS'],
+  links: [{ label: 'Visit nimblechicago.com', href: 'https://nimblechicago.com/' }],
+};
 
 const projects = [
   {
-    title: 'Nimble Chicago',
-    eyebrow: 'Live product · Full-stack build and release',
-    summary:
-      'A mobile ordering experience taken from build through app-store release, with a React Native app, Next.js web app, Node.js backend, PostgreSQL, and Square POS integration.',
-    tags: ['Square POS API', 'Inventory workflows', 'React Native', 'iOS & Android release'],
-    links: [
-      { label: 'Visit product', href: 'https://nimblechicago.com/' },
-    ],
-    accent: 'project-nimble',
-    visual: 'nimble',
-  },
-  {
     title: 'Salt & Yeast',
-    eyebrow: 'Ordering platform · Web and mobile',
+    eyebrow: 'Ordering platform · Web + mobile MVP',
     summary:
-      'A multi-location bakery concept explored across an ordering platform with an admin dashboard and a React Native mobile experience with a Next.js and Prisma backend MVP.',
+      'A multi-location bakery ordering concept: customer web ordering, an admin dashboard for staff, and a React Native app on a shared Next.js and Prisma backend.',
     tags: ['Next.js', 'React Native', 'Expo', 'Prisma'],
     links: [
       { label: 'Web code', href: 'https://github.com/Robert-Ulloa/salt-and-yeast-web' },
       { label: 'Mobile code', href: 'https://github.com/Robert-Ulloa/salt-and-yeast-mobile' },
     ],
-    accent: 'project-salt',
+    visual: 'salt',
   },
   {
     title: 'Coda Square',
-    eyebrow: 'Marketing website · Product-focused design',
+    eyebrow: 'Marketing website · Design + build',
     summary:
-      'A polished Next.js website for a studio creating custom apps and websites for coffee shops, designed with a reusable TypeScript and Tailwind foundation.',
+      'A product-focused marketing site for a studio building custom apps and websites for coffee shops, on a reusable TypeScript and Tailwind foundation.',
     tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
     links: [
       { label: 'Visit site', href: 'https://codasquare-website.vercel.app' },
       { label: 'View code', href: 'https://github.com/Robert-Ulloa/codasquare-website' },
     ],
-    accent: 'project-coda',
     visual: 'coda',
   },
 ];
 
-const skillGroups = [
-  {
-    name: 'Build',
-    skills: ['JavaScript', 'TypeScript', 'React', 'React Native', 'Next.js', 'Vue', 'Node.js'],
-  },
-  {
-    name: 'Test & improve',
-    skills: ['API testing', 'Regression testing', 'Accessibility', 'Playwright', 'Axe', 'Lighthouse'],
-  },
-  {
-    name: 'Ship with confidence',
-    skills: ['REST APIs', 'PostgreSQL', 'SQL', 'Git/GitHub', 'Jira', 'CI/CD'],
-  },
-];
-
-const deliveryFocus = [
+const services = [
   {
     number: '01',
     title: 'Square integration & operations',
     description:
-      'Connect ordering and inventory workflows to Square POS APIs, then trace discrepancies across API responses, application logic, and database records.',
+      'Connect ordering and inventory workflows to Square POS APIs, then trace discrepancies across API responses, application logic and database records.',
     details: ['Square POS APIs', 'Catalog & inventory', 'Data reconciliation'],
   },
   {
     number: '02',
     title: 'Mobile app development',
     description:
-      'Build mobile product experiences in React Native—from core user flows and backend connections to release readiness for iOS and Android.',
+      'Build React Native products end to end, from core user flows and backend connections to release readiness on iOS and Android.',
     details: ['React Native', 'iOS & Android', 'App-store release'],
   },
   {
     number: '03',
     title: 'Web, APIs & data',
     description:
-      'Deliver practical web products and the services behind them with Next.js, Node.js, REST APIs, PostgreSQL, and clear operational interfaces.',
+      'Deliver practical web products and the services behind them with Next.js, Node.js, REST APIs, PostgreSQL and clear admin interfaces.',
     details: ['Next.js & Node.js', 'REST APIs', 'PostgreSQL'],
   },
   {
     number: '04',
     title: 'QA & release confidence',
     description:
-      'Test the journeys that matter with API, functional, accessibility, and regression testing—so a release is dependable before real users find the edge cases.',
+      'Test the journeys that matter with API, functional, accessibility and regression testing, so releases are dependable before real users find the edge cases.',
     details: ['API testing', 'Accessibility', 'Regression testing'],
   },
+];
+
+const skillGroups = [
+  { name: 'Build', skills: ['JavaScript', 'TypeScript', 'React', 'React Native', 'Next.js', 'Vue', 'Node.js'] },
+  { name: 'Test', skills: ['API testing', 'Regression', 'Accessibility', 'Playwright', 'Axe', 'Lighthouse'] },
+  { name: 'Ship', skills: ['REST APIs', 'PostgreSQL', 'SQL', 'Git & GitHub', 'Jira', 'CI/CD'] },
 ];
 
 const experience = [
@@ -110,7 +118,7 @@ const experience = [
     role: 'QA engineer & junior developer',
     organisation: 'Focus State · Blue Chip Worldwide',
     detail:
-      'Tested React and Vue applications across browser, device, API, accessibility, and regression workflows while collaborating with developers to investigate and verify fixes.',
+      'Tested React and Vue applications across browser, device, API, accessibility and regression workflows, working with developers to investigate and verify fixes.',
   },
 ];
 
@@ -118,6 +126,22 @@ function ArrowUpRight() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <path d="M7 17 17 7M8 7h9v9" />
+    </svg>
+  );
+}
+
+function ArrowDown() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M12 5v14M6 13l6 6 6-6" />
+    </svg>
+  );
+}
+
+function DownloadIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M12 4v11M7 10l5 5 5-5M5 20h14" />
     </svg>
   );
 }
@@ -147,11 +171,54 @@ function LinkedinIcon() {
   );
 }
 
-function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [formState, setFormState] = useState('idle');
+function SocialLinks({ className = '' }) {
+  return (
+    <div className={`social-links ${className}`}>
+      <a href={`mailto:${email}`} aria-label="Email Roberto"><EmailIcon /></a>
+      <a href={githubUrl} target="_blank" rel="noreferrer" aria-label="Roberto Ulloa on GitHub"><GithubIcon /></a>
+      <a href={linkedinUrl} target="_blank" rel="noreferrer" aria-label="Roberto Ulloa on LinkedIn"><LinkedinIcon /></a>
+    </div>
+  );
+}
 
+function ProjectLinks({ links }) {
+  return (
+    <div className="project-links">
+      {links.map((link) => (
+        <a href={link.href} target="_blank" rel="noreferrer" key={link.label}>
+          {link.label} <ArrowUpRight />
+        </a>
+      ))}
+    </div>
+  );
+}
+
+function SaltVisual() {
+  return (
+    <div className="salt-visual" aria-hidden="true">
+      <div className="mock-browser">
+        <div className="mock-bar"><span /><span /><span /></div>
+        <div className="mock-body">
+          <div className="mock-side">
+            <b>S&amp;Y</b>
+            <i /><i /><i /><i />
+          </div>
+          <div className="mock-main">
+            <div className="mock-stats"><span /><span /><span /></div>
+            <div className="mock-row" /><div className="mock-row" /><div className="mock-row" /><div className="mock-row short" />
+          </div>
+        </div>
+      </div>
+      <div className="mock-phone">
+        <div className="mock-phone-hero" />
+        <div className="mock-phone-item" /><div className="mock-phone-item" />
+        <div className="mock-phone-cta" />
+      </div>
+    </div>
+  );
+}
+
+function useRevealOnScroll() {
   useEffect(() => {
     const revealItems = document.querySelectorAll('[data-reveal]');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -170,14 +237,60 @@ function App() {
           }
         });
       },
-      { threshold: 0.14 },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
     );
 
     revealItems.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
   }, []);
+}
+
+function useActiveSection(ids) {
+  const [active, setActive] = useState('');
+
+  useEffect(() => {
+    if (!('IntersectionObserver' in window)) return undefined;
+    const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { rootMargin: '-45% 0px -50% 0px' },
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [ids]);
+
+  return active;
+}
+
+const sectionIds = [...navItems.map((item) => item.id), 'contact'];
+
+function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formState, setFormState] = useState('idle');
+  const activeSection = useActiveSection(sectionIds);
+
+  useRevealOnScroll();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onKey = (event) => event.key === 'Escape' && setMenuOpen(false);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('keydown', onKey);
+    };
+  }, []);
 
   const closeMenu = () => setMenuOpen(false);
+  const updateField = (field) => (event) => setFormData({ ...formData, [field]: event.target.value });
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -206,273 +319,301 @@ function App() {
 
   return (
     <div className="site-shell">
-      <header className="site-header">
-        <a className="wordmark" href="#top" onClick={closeMenu} aria-label="Roberto Ulloa home">
-          <span className="wordmark-mark">RU</span>
-          <span>Roberto Ulloa</span>
-        </a>
+      <a className="skip-link" href="#main">Skip to content</a>
 
-        <button
-          className="menu-toggle"
-          type="button"
-          aria-label="Toggle navigation"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <span />
-          <span />
-        </button>
+      <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
+        <div className="container header-inner">
+          <a className="wordmark" href="#top" onClick={closeMenu} aria-label="Roberto Ulloa, back to top">
+            <span className="wordmark-mark">RU</span>
+            <span>Roberto Ulloa</span>
+          </a>
 
-        <nav className={`site-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Primary navigation">
-          <a href="#work" onClick={closeMenu}>Work</a>
-          <a href="#focus" onClick={closeMenu}>Focus</a>
-          <a href="#about" onClick={closeMenu}>About</a>
-          <a href="#experience" onClick={closeMenu}>Experience</a>
-          <a className="nav-contact" href="#contact" onClick={closeMenu}>Let&apos;s talk</a>
-        </nav>
+          <button
+            className={`menu-toggle ${menuOpen ? 'is-open' : ''}`}
+            type="button"
+            aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+            aria-expanded={menuOpen}
+            aria-controls="site-nav"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+          </button>
+
+          <nav id="site-nav" className={`site-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Primary">
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={closeMenu}
+                className={activeSection === item.id ? 'is-active' : ''}
+                aria-current={activeSection === item.id ? 'true' : undefined}
+              >
+                {item.label}
+              </a>
+            ))}
+            <a className="nav-contact" href="#contact" onClick={closeMenu}>Let&apos;s talk</a>
+          </nav>
+        </div>
       </header>
 
-      <main>
+      <main id="main">
         <section className="hero" id="top" aria-labelledby="hero-title">
-          <div className="hero-copy" data-reveal>
-            <p className="eyebrow"><span className="status-dot" /> Based in London, UK</p>
-            <h1 id="hero-title">I build reliable digital products, from the first idea to launch.</h1>
-            <p className="hero-intro">
-              I&apos;m Roberto, a software developer and QA engineer who combines full-stack development, disciplined testing,
-              and a practical product mindset.
-            </p>
-            <div className="hero-actions">
-              <a className="button button-primary" href="#work">View selected work <ArrowUpRight /></a>
-              <a className="button button-secondary" href="/Roberto-Ulloa-CV.pdf" download>Download CV</a>
+          <div className="container hero-inner">
+            <div className="hero-copy" data-reveal>
+              <p className="availability">
+                <span className="availability-pulse" /> Available for new roles · London, UK
+              </p>
+              <h1 id="hero-title">
+                Full-stack developer with a <em>tester&apos;s eye.</em>
+              </h1>
+              <p className="hero-intro">
+                I&apos;m Roberto. I take web and mobile products from first commit to the App Store, and I test
+                them properly along the way. Most recently I built and launched a live ordering app with React Native,
+                Next.js, PostgreSQL and Square POS.
+              </p>
+              <div className="hero-actions">
+                <a className="button button-primary" href="#work">See my work <ArrowDown /></a>
+                <a className="button button-secondary" href={cvUrl} download>Download CV <DownloadIcon /></a>
+              </div>
+              <SocialLinks className="hero-social" />
             </div>
-            <div className="hero-email-row">
-              <span>Available for opportunities</span>
-              <a className="hero-email" href="mailto:roanuc8@gmail.com" aria-label="Email Roberto" title="Email Roberto">
-                <EmailIcon />
-              </a>
-            </div>
-            <div className="hero-meta" aria-label="Professional highlights">
-              <div><strong>Full-stack</strong><span>Web, mobile & APIs</span></div>
-              <div><strong>QA-led</strong><span>Tested for real users</span></div>
-              <div><strong>Shipped</strong><span>Released to app stores</span></div>
+
+            <div className="hero-portrait" data-reveal>
+              <div className="portrait-ring" aria-hidden="true" />
+              <div className="portrait-frame">
+                <img src={profileImage} alt="Portrait of Roberto Ulloa" width="720" height="720" />
+              </div>
+              <div className="portrait-badge">
+                <span className="badge-label">Currently</span>
+                <strong>Full-stack & QA</strong>
+                <span>Nimble Chicago</span>
+              </div>
             </div>
           </div>
 
-          <div className="hero-portrait-wrap" data-reveal aria-hidden="true">
-            <div className="portrait-orbit orbit-one" />
-            <div className="portrait-orbit orbit-two" />
-            <div className="portrait-panel">
-              <div className="portrait-label">Developer · QA · Analyst</div>
-              <img src={profileImage} alt="" />
-              <div className="portrait-caption"><span>01</span> Building with care</div>
-            </div>
+          <div className="container">
+            <ul className="proof-row" data-reveal aria-label="Highlights">
+              {proofPoints.map((point) => (
+                <li key={point.value}>
+                  <strong>{point.value}</strong>
+                  <span>{point.label}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-        </section>
-
-        <section className="opportunity-strip" aria-label="Professional availability" data-reveal>
-          <p><span className="availability-pulse" /> Open to opportunities</p>
-          <span>Software development · QA engineering · technical analysis</span>
-          <a href="mailto:roanuc8@gmail.com">Let&apos;s connect <ArrowUpRight /></a>
         </section>
 
         <section className="section work-section" id="work" aria-labelledby="work-title">
-          <div className="section-heading split-heading" data-reveal>
-            <div>
-              <p className="eyebrow">Selected work</p>
-              <h2 id="work-title">Recent projects with real product thinking.</h2>
+          <div className="container">
+            <div className="section-heading" data-reveal>
+              <div>
+                <p className="eyebrow">Selected work</p>
+                <h2 id="work-title">Products I&apos;ve built, shipped and tested.</h2>
+              </div>
+              <p>
+                I enjoy the whole path: shaping the interface, connecting the systems behind it, testing the edge
+                cases and making the release dependable.
+              </p>
             </div>
-            <p>
-              I enjoy the full path: shaping an interface, connecting the systems behind it, testing the edge cases, and making the release dependable.
-            </p>
-          </div>
 
-          <div className="project-grid">
-            {projects.map((project, index) => (
-              <article className={`project-card ${project.accent}`} data-reveal key={project.title}>
-                <div className={`project-art ${project.visual ? 'project-art--visual' : ''}`}>
-                  {project.visual === 'nimble' && (
-                    <div className="nimble-screens" aria-label="Nimble Chicago mobile app screenshots">
-                      <img src="/projects/nimble-screen-home.jpg" alt="Nimble Chicago app home screen" />
-                      <img src="/projects/nimble-screen-menu.jpg" alt="Nimble Chicago app menu screen" />
-                    </div>
-                  )}
-                  {project.visual === 'coda' && (
-                    <img className="coda-mockup" src="/projects/coda-product-mockup.jpg" alt="Coda Square custom mobile product mockup" />
-                  )}
-                  {!project.visual && (
-                    <div className="project-art-graphic" aria-hidden="true">
-                      <span className="art-number">0{index + 1}</span>
-                      <span className="art-line line-a" />
-                      <span className="art-line line-b" />
-                      <span className="art-shape" />
-                    </div>
-                  )}
+            <article className="featured-card" data-reveal aria-labelledby="featured-title">
+              <div className="featured-art">
+                <div className="nimble-screens">
+                  <img src="/projects/nimble-screen-home.jpg" alt="Nimble Chicago app home screen" loading="lazy" />
+                  <img src="/projects/nimble-screen-menu.jpg" alt="Nimble Chicago app menu screen" loading="lazy" />
                 </div>
-                <div className="project-content">
-                  <p className="project-eyebrow">{project.eyebrow}</p>
-                  <h3>{project.title}</h3>
-                  <p className="project-summary">{project.summary}</p>
-                  <ul className="tag-list" aria-label={`${project.title} technologies`}>
-                    {project.tags.map((tag) => <li key={tag}>{tag}</li>)}
-                  </ul>
-                  <div className="project-links">
-                    {project.links.map((link) => (
-                      <a href={link.href} target="_blank" rel="noreferrer" key={link.label}>
-                        {link.label} <ArrowUpRight />
-                      </a>
-                    ))}
+              </div>
+              <div className="featured-content">
+                <p className="project-eyebrow">{featuredProject.eyebrow}</p>
+                <h3 id="featured-title">{featuredProject.title}</h3>
+                <p className="project-summary">{featuredProject.summary}</p>
+                <ul className="highlight-list">
+                  {featuredProject.highlights.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+                <ul className="tag-list" aria-label={`${featuredProject.title} technologies`}>
+                  {featuredProject.tags.map((tag) => <li key={tag}>{tag}</li>)}
+                </ul>
+                <ProjectLinks links={featuredProject.links} />
+              </div>
+            </article>
+
+            <div className="project-grid">
+              {projects.map((project) => (
+                <article className={`project-card project-${project.visual}`} data-reveal key={project.title}>
+                  <div className="project-art">
+                    {project.visual === 'salt' && <SaltVisual />}
+                    {project.visual === 'coda' && (
+                      <img
+                        className="coda-mockup"
+                        src="/projects/coda-product-mockup.jpg"
+                        alt="Coda Square mobile app mockups for coffee shops"
+                        loading="lazy"
+                      />
+                    )}
                   </div>
-                </div>
-              </article>
-            ))}
+                  <div className="project-content">
+                    <p className="project-eyebrow">{project.eyebrow}</p>
+                    <h3>{project.title}</h3>
+                    <p className="project-summary">{project.summary}</p>
+                    <ul className="tag-list" aria-label={`${project.title} technologies`}>
+                      {project.tags.map((tag) => <li key={tag}>{tag}</li>)}
+                    </ul>
+                    <ProjectLinks links={project.links} />
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="delivery-section" id="focus" aria-labelledby="delivery-title">
-          <div className="delivery-heading" data-reveal>
-            <div>
-              <p className="eyebrow">Product & platform focus</p>
-              <h2 id="delivery-title">The work behind a product people can rely on.</h2>
+        <section className="section services-section" id="services" aria-labelledby="services-title">
+          <div className="container">
+            <div className="section-heading" data-reveal>
+              <div>
+                <p className="eyebrow">What I do</p>
+                <h2 id="services-title">The work behind a product people can rely on.</h2>
+              </div>
+              <p>
+                From a Square-connected ordering flow to a store-ready mobile app, I work where the product experience
+                meets the systems and operational details underneath it.
+              </p>
             </div>
-            <p>
-              From a Square-connected ordering flow to a store-ready mobile app, I work where product experience meets the systems and operational details underneath it.
-            </p>
+            <div className="service-grid">
+              {services.map((service) => (
+                <article className="service-card" data-reveal key={service.number}>
+                  <span className="service-number">{service.number}</span>
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                  <ul aria-label={`${service.title} details`}>
+                    {service.details.map((detail) => <li key={detail}>{detail}</li>)}
+                  </ul>
+                </article>
+              ))}
+            </div>
           </div>
-          <div className="delivery-grid">
-            {deliveryFocus.map((focus) => (
-              <article className="delivery-card" data-reveal key={focus.number}>
-                <span className="delivery-number">{focus.number}</span>
-                <h3>{focus.title}</h3>
-                <p>{focus.description}</p>
-                <ul aria-label={`${focus.title} details`}>
-                  {focus.details.map((detail) => <li key={detail}>{detail}</li>)}
-                </ul>
-              </article>
-            ))}
-          </div>
-          <a className="delivery-contact" data-reveal href="mailto:roanuc8@gmail.com">
-            Need Square, mobile, or quality-focused delivery? Let&apos;s talk <ArrowUpRight />
-          </a>
         </section>
 
         <section className="section about-section" id="about" aria-labelledby="about-title">
-          <div className="about-intro" data-reveal>
-            <p className="eyebrow">How I work</p>
-            <h2 id="about-title">Technical enough to build it. Curious enough to make it better.</h2>
-          </div>
-          <div className="about-body" data-reveal>
-            <p>
-              My work sits at the meeting point of development, quality, and delivery. I build in JavaScript and TypeScript,
-              work comfortably across React, React Native, and Next.js, and use testing as a way to protect the people using the product.
-            </p>
-            <p>
-              That combination has made me especially comfortable tracing an issue across interfaces, APIs, records, and real behaviour—then communicating a clear way forward.
-            </p>
-            <a className="text-link" href="#experience">Explore my experience <ArrowUpRight /></a>
-          </div>
-        </section>
-
-        <section className="skills-section" aria-labelledby="skills-title">
-          <div className="skills-topline" data-reveal>
-            <p className="eyebrow">Capabilities</p>
-            <h2 id="skills-title">A balanced development toolkit.</h2>
-          </div>
-          <div className="skill-grid">
-            {skillGroups.map((group) => (
-              <article className="skill-group" data-reveal key={group.name}>
-                <h3>{group.name}</h3>
-                <ul>
-                  {group.skills.map((skill) => <li key={skill}>{skill}</li>)}
-                </ul>
-              </article>
-            ))}
+          <div className="container about-inner">
+            <div className="about-copy" data-reveal>
+              <p className="eyebrow">How I work</p>
+              <h2 id="about-title">Technical enough to build it. Curious enough to make it better.</h2>
+              <p>
+                My work sits where development, quality and delivery meet. I build in JavaScript and TypeScript across
+                React, React Native and Next.js, and I treat testing as a way to protect the people using the product.
+              </p>
+              <p>
+                That mix means I&apos;m comfortable tracing an issue across the interface, the API, the database and real
+                user behaviour, then explaining a clear way forward to the team.
+              </p>
+            </div>
+            <div className="toolkit" data-reveal aria-labelledby="toolkit-title">
+              <h3 id="toolkit-title" className="toolkit-title">Toolkit</h3>
+              {skillGroups.map((group) => (
+                <div className="toolkit-group" key={group.name}>
+                  <h4>{group.name}</h4>
+                  <ul>
+                    {group.skills.map((skill) => <li key={skill}>{skill}</li>)}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         <section className="section experience-section" id="experience" aria-labelledby="experience-title">
-          <div className="section-heading" data-reveal>
-            <p className="eyebrow">Experience</p>
-            <h2 id="experience-title">A developer&apos;s eye for detail, backed by hands-on QA and analysis.</h2>
+          <div className="container">
+            <div className="section-heading" data-reveal>
+              <div>
+                <p className="eyebrow">Experience</p>
+                <h2 id="experience-title">A developer&apos;s eye for detail, backed by hands-on QA.</h2>
+              </div>
+              <div className="heading-actions">
+                <a className="button button-secondary" href={cvUrl} download>Download full CV <DownloadIcon /></a>
+              </div>
+            </div>
+            <ol className="timeline">
+              {experience.map((item) => (
+                <li data-reveal key={`${item.organisation}-${item.period}`}>
+                  <p className="timeline-period">{item.period}</p>
+                  <div className="timeline-role">
+                    <h3>{item.role}</h3>
+                    <p className="timeline-organisation">{item.organisation}</p>
+                  </div>
+                  <p className="timeline-detail">{item.detail}</p>
+                </li>
+              ))}
+            </ol>
           </div>
-          <ol className="timeline">
-            {experience.map((item) => (
-              <li data-reveal key={`${item.organisation}-${item.period}`}>
-                <p className="timeline-period">{item.period}</p>
-                <div className="timeline-role">
-                  <h3>{item.role}</h3>
-                  <p className="timeline-organisation">{item.organisation}</p>
-                </div>
-                <p className="timeline-detail">{item.detail}</p>
-              </li>
-            ))}
-          </ol>
-          <a className="button button-secondary experience-cta" href="/Roberto-Ulloa-CV.pdf" download>Read the full CV</a>
         </section>
 
-        <section className="contact-section" id="contact" aria-labelledby="contact-title">
-          <div className="contact-copy" data-reveal>
-            <p className="eyebrow">Get in touch</p>
-            <h2 id="contact-title">Let&apos;s make something useful.</h2>
-            <p>
-              I&apos;m interested in software development, QA, technical analysis, and AI-enabled product work. For roles, projects, or a good technical conversation, get in touch.
-            </p>
-            <div className="contact-links">
-              <a className="contact-email-icon" href="mailto:roanuc8@gmail.com" aria-label="Email Roberto" title="Email Roberto"><EmailIcon /></a>
-              <a href={linkedinUrl} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight /></a>
+        <section className="section contact-section" id="contact" aria-labelledby="contact-title">
+          <div className="container contact-inner">
+            <div className="contact-copy" data-reveal>
+              <p className="eyebrow">Get in touch</p>
+              <h2 id="contact-title">Let&apos;s build something useful.</h2>
+              <p>
+                I&apos;m looking for software development and QA roles, and I&apos;m happy to talk about freelance
+                projects, especially Square integrations and mobile apps.
+              </p>
+              <a className="contact-email" href={`mailto:${email}`}>
+                <EmailIcon /> {email}
+              </a>
+              <div className="contact-links">
+                <a href={linkedinUrl} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight /></a>
+                <a href={githubUrl} target="_blank" rel="noreferrer">GitHub <ArrowUpRight /></a>
+              </div>
             </div>
-          </div>
 
-          <form className="contact-form" data-reveal name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit}>
-            <input type="hidden" name="form-name" value="contact" />
-            <input type="hidden" name="subject" value="New portfolio enquiry from robertoulloa.com" />
-            <p className="honeypot"><label>Do not fill this out <input name="bot-field" /></label></p>
-            <label>
-              Your name
-              <input
-                name="name"
-                type="text"
-                autoComplete="name"
-                value={formData.name}
-                onChange={(event) => setFormData({ ...formData, name: event.target.value })}
-                required
-              />
-            </label>
-            <label>
-              Email address
-              <input
-                name="email"
-                type="email"
-                autoComplete="email"
-                value={formData.email}
-                onChange={(event) => setFormData({ ...formData, email: event.target.value })}
-                required
-              />
-            </label>
-            <label>
-              Your message
-              <textarea
-                name="message"
-                rows="5"
-                value={formData.message}
-                onChange={(event) => setFormData({ ...formData, message: event.target.value })}
-                required
-              />
-            </label>
-            <button className="button button-primary" type="submit" disabled={formState === 'sending'}>
-              {formState === 'sending' ? 'Sending…' : 'Send message'} <ArrowUpRight />
-            </button>
-            {formState === 'success' && <p className="form-message success" role="status">Thanks—your message is on its way.</p>}
-            {formState === 'error' && <p className="form-message error" role="alert">Something went wrong. Please email me directly instead.</p>}
-          </form>
+            <form className="contact-form" data-reveal name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit}>
+              <input type="hidden" name="form-name" value="contact" />
+              <input type="hidden" name="subject" value="New portfolio enquiry from robertoulloa.com" />
+              <p className="honeypot"><label>Do not fill this out <input name="bot-field" tabIndex={-1} /></label></p>
+              <div className="form-row">
+                <label>
+                  Name
+                  <input name="name" type="text" autoComplete="name" value={formData.name} onChange={updateField('name')} required />
+                </label>
+                <label>
+                  Email
+                  <input name="email" type="email" autoComplete="email" value={formData.email} onChange={updateField('email')} required />
+                </label>
+              </div>
+              <label>
+                Message
+                <textarea
+                  name="message"
+                  rows="5"
+                  placeholder="A role, a project, or just a question…"
+                  value={formData.message}
+                  onChange={updateField('message')}
+                  required
+                />
+              </label>
+              <div className="form-footer">
+                <button className="button button-dark" type="submit" disabled={formState === 'sending'}>
+                  {formState === 'sending' ? 'Sending…' : 'Send message'} <ArrowUpRight />
+                </button>
+                <div aria-live="polite">
+                  {formState === 'success' && <p className="form-message">Thanks, your message is on its way.</p>}
+                  {formState === 'error' && (
+                    <p className="form-message is-error">
+                      Something went wrong. Please email me at <a href={`mailto:${email}`}>{email}</a>.
+                    </p>
+                  )}
+                </div>
+              </div>
+            </form>
+          </div>
         </section>
       </main>
 
       <footer className="site-footer">
-        <p>© {new Date().getFullYear()} Roberto Ulloa</p>
-        <div>
-          <a href={githubUrl} target="_blank" rel="noreferrer" aria-label="Roberto Ulloa on GitHub"><GithubIcon /></a>
-          <a href={linkedinUrl} target="_blank" rel="noreferrer" aria-label="Roberto Ulloa on LinkedIn"><LinkedinIcon /></a>
-          <a href="#top">Back to top ↑</a>
+        <div className="container footer-inner">
+          <p>© {new Date().getFullYear()} Roberto Ulloa · London, UK</p>
+          <SocialLinks className="footer-social" />
+          <a className="back-to-top" href="#top">Back to top ↑</a>
         </div>
       </footer>
     </div>
