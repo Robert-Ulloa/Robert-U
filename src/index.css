@@ -46,13 +46,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .menu-toggle span { background: #17261f; display: block; height: 2px; margin: 5px 0; width: 23px; }
 
 .hero { display: grid; gap: clamp(3rem, 7vw, 9rem); grid-template-columns: 1.1fr .9fr; margin: 0 auto; max-width: 1440px; min-height: min(750px, calc(100vh - 76px)); padding: clamp(4.5rem, 9vw, 8.5rem) clamp(1.25rem, 8vw, 8rem) clamp(4rem, 8vw, 7rem); }
-.hero-copy { align-self: center; max-width: 710px; }
+.hero-copy { align-self: center; justify-self: center; max-width: 710px; text-align: center; }
 .eyebrow { align-items: center; color: #4d6257; display: flex; font: 500 .68rem 'DM Mono', monospace; gap: .55rem; letter-spacing: .08em; margin: 0 0 1.2rem; text-transform: uppercase; }
+.hero-copy .eyebrow { justify-content: center; }
 .status-dot { background: #db744d; border-radius: 50%; box-shadow: 0 0 0 4px rgba(219, 116, 77, .15); height: 7px; width: 7px; }
 h1, h2, h3, p { margin-top: 0; }
 h1 { font-size: clamp(3.2rem, 6.3vw, 6.5rem); font-weight: 800; letter-spacing: -.075em; line-height: .98; margin-bottom: 1.65rem; }
-.hero-intro { color: #52645a; font-size: clamp(1.05rem, 1.45vw, 1.28rem); line-height: 1.7; margin-bottom: 2rem; max-width: 600px; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.hero-intro { color: #52645a; font-size: clamp(1.05rem, 1.45vw, 1.28rem); line-height: 1.7; margin-left: auto; margin-right: auto; margin-bottom: 2rem; max-width: 600px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
 .button { align-items: center; border: 1px solid transparent; border-radius: 999px; display: inline-flex; font-size: .8rem; font-weight: 800; gap: .65rem; justify-content: center; padding: .86rem 1.2rem; transition: box-shadow .25s ease, transform .25s ease, background .25s ease, border-color .25s ease; }
 .button:hover { box-shadow: 0 10px 18px rgba(23, 38, 31, .13); transform: translateY(-3px); }
 .button:hover svg, .hero-email:hover svg, .opportunity-strip a:hover svg, .project-links a:hover svg { transform: translate(2px, -2px); }
@@ -63,10 +64,11 @@ h1 { font-size: clamp(3.2rem, 6.3vw, 6.5rem); font-weight: 800; letter-spacing: 
 .button-secondary { border-color: rgba(23, 38, 31, .22); color: #17261f; }
 .button-secondary:hover { background: rgba(23, 38, 31, .06); }
 .button:disabled { cursor: not-allowed; opacity: .65; transform: none; }
-.hero-email { align-items: center; color: #587064; display: inline-flex; flex-wrap: wrap; font-size: .72rem; font-weight: 700; gap: .42rem; margin-top: 1.25rem; transition: color .2s ease; }
-.hero-email span { color: #1c3029; text-decoration: underline; text-decoration-color: rgba(232, 114, 72, .7); text-underline-offset: 4px; }
-.hero-email:hover { color: #e87248; }
-.hero-meta { border-top: 1px solid rgba(23, 38, 31, .16); display: flex; gap: clamp(1rem, 3vw, 2.8rem); margin-top: clamp(3rem, 6vw, 5.2rem); padding-top: 1.15rem; }
+.hero-email-row { align-items: center; color: #587064; display: flex; font-size: .72rem; font-weight: 700; gap: .6rem; justify-content: center; margin-top: 1.25rem; }
+.hero-email { align-items: center; background: #17261f; border-radius: 50%; color: #f2f3ed; display: inline-flex; height: 29px; justify-content: center; transition: background .2s ease, transform .2s ease; width: 29px; }
+.hero-email svg { height: 14px; width: 14px; }
+.hero-email:hover { background: #e87248; transform: translateY(-2px); }
+.hero-meta { border-top: 1px solid rgba(23, 38, 31, .16); display: flex; gap: clamp(1rem, 3vw, 2.8rem); justify-content: center; margin-top: clamp(3rem, 6vw, 5.2rem); padding-top: 1.15rem; text-align: left; }
 .hero-meta div { display: grid; gap: .22rem; }
 .hero-meta strong { font-size: .8rem; letter-spacing: -.02em; }
 .hero-meta span { color: #65756c; font-size: .7rem; }
@@ -182,6 +184,9 @@ h1 { font-size: clamp(3.2rem, 6.3vw, 6.5rem); font-weight: 800; letter-spacing: 
 .contact-copy > p:not(.eyebrow) { font-size: 1rem; line-height: 1.72; margin: 1.5rem 0 1.8rem; max-width: 510px; }
 .contact-links { display: flex; flex-wrap: wrap; gap: 1rem 1.6rem; }
 .contact-links a { border-bottom: 1px solid rgba(255, 248, 238, .6); padding-bottom: .25rem; }
+.contact-links .contact-email-icon { align-items: center; border: 1px solid rgba(255, 248, 238, .7); border-radius: 50%; display: inline-flex; height: 34px; justify-content: center; padding: 0; transition: background .2s ease, color .2s ease, transform .2s ease; width: 34px; }
+.contact-links .contact-email-icon:hover { background: #fff8ee; color: #e87248; transform: translateY(-2px); }
+.contact-email-icon svg { height: 16px; width: 16px; }
 .contact-form { display: grid; gap: 1rem; }
 .contact-form label { display: grid; font-size: .7rem; font-weight: 800; gap: .45rem; letter-spacing: .01em; }
 .contact-form input:not([type='hidden']), .contact-form textarea { background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 248, 238, .45); border-radius: 3px; color: #fff; outline: 0; padding: .72rem .8rem; resize: vertical; transition: background .2s ease, box-shadow .2s ease; }

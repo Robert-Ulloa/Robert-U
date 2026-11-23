@@ -122,6 +122,15 @@ function ArrowUpRight() {
   );
 }
 
+function EmailIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m4 7 8 6 8-6" />
+    </svg>
+  );
+}
+
 function GithubIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
@@ -177,6 +186,7 @@ function App() {
     try {
       const body = new URLSearchParams({
         'form-name': 'contact',
+        subject: 'New portfolio enquiry from robertoulloa.com',
         ...formData,
       }).toString();
 
@@ -235,7 +245,12 @@ function App() {
               <a className="button button-primary" href="#work">View selected work <ArrowUpRight /></a>
               <a className="button button-secondary" href="/Roberto-Ulloa-CV.pdf" download>Download CV</a>
             </div>
-            <a className="hero-email" href="mailto:roanuc8@gmail.com">Available for opportunities <span>roanuc8@gmail.com</span> <ArrowUpRight /></a>
+            <div className="hero-email-row">
+              <span>Available for opportunities</span>
+              <a className="hero-email" href="mailto:roanuc8@gmail.com" aria-label="Email Roberto" title="Email Roberto">
+                <EmailIcon />
+              </a>
+            </div>
             <div className="hero-meta" aria-label="Professional highlights">
               <div><strong>Full-stack</strong><span>Web, mobile & APIs</span></div>
               <div><strong>QA-led</strong><span>Tested for real users</span></div>
@@ -402,13 +417,14 @@ function App() {
               I&apos;m interested in software development, QA, technical analysis, and AI-enabled product work. For roles, projects, or a good technical conversation, get in touch.
             </p>
             <div className="contact-links">
-              <a href="mailto:roanuc8@gmail.com">roanuc8@gmail.com <ArrowUpRight /></a>
+              <a className="contact-email-icon" href="mailto:roanuc8@gmail.com" aria-label="Email Roberto" title="Email Roberto"><EmailIcon /></a>
               <a href={linkedinUrl} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight /></a>
             </div>
           </div>
 
           <form className="contact-form" data-reveal name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit}>
             <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="subject" value="New portfolio enquiry from robertoulloa.com" />
             <p className="honeypot"><label>Do not fill this out <input name="bot-field" /></label></p>
             <label>
               Your name
