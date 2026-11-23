@@ -12,14 +12,21 @@ The source code for this portfolio is available on GitHub: [https://github.com/R
 
 ## Features
 
-- **Selected work**: Recent product work, with verified technology and project links.
-- **Experience and capabilities**: Development, QA, release, and analysis strengths.
-- **Contact form**: Netlify Forms-ready message handling plus direct email and LinkedIn links.
-- **CV download**: A public PDF version of the current CV is available from the site.
+- **Selected work**: A featured Nimble Chicago case study plus supporting projects.
+- **Services, toolkit and experience**: Development, QA, release and data-analysis strengths.
+- **Blog**: Short engineering write-ups at `/blog`, stored in `src/data/posts.js`.
+- **Contact form**: Netlify Forms handling (no email address is published on the site).
+- **CV download**: A public PDF version of the CV.
+- **Dark theme with motion**: Ambient background, scroll reveals and cursor-follow card glow, all disabled for users who prefer reduced motion.
+
+## Editing content
+
+All page copy lives in `src/data/site.js` (projects, services, skills, experience) and `src/data/posts.js` (blog posts).
+To add a post, add an object to the `posts` array and a matching `<url>` entry in `public/sitemap.xml`.
 
 ## Technologies Used
 
-- **React**: The portfolio is built using React for a component-based architecture.
+- **React** + **React Router**: Component-based UI with client-side routes for the blog.
 - **Vite**: Used as the build tool for fast development and optimized production builds.
 - **CSS**: Custom responsive styling and accessible interactions.
 - **Netlify Forms**: Contact form capture when deployed through Netlify.
@@ -54,7 +61,6 @@ To run this project locally, follow these steps:
 
 Feel free to reach out for roles, projects, or collaboration:
 
-- **Email**: roanuc8@gmail.com
 - **LinkedIn**: [Roberto Ulloa on LinkedIn](https://www.linkedin.com/in/roberto-antonio-ulloa-cruz-30135b317/)
 - **GitHub**: [Robert-Ulloa](https://github.com/Robert-Ulloa)
 
