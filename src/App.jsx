@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import profileImage from './assets/images/profile1.png';
 
 const githubUrl = 'https://github.com/Robert-Ulloa';
@@ -15,6 +15,7 @@ const projects = [
       { label: 'Visit product', href: 'https://nimblechicago.com/' },
     ],
     accent: 'project-nimble',
+    visual: 'nimble',
   },
   {
     title: 'Salt & Yeast',
@@ -39,6 +40,7 @@ const projects = [
       { label: 'View code', href: 'https://github.com/Robert-Ulloa/codasquare-website' },
     ],
     accent: 'project-coda',
+    visual: 'coda',
   },
 ];
 
@@ -110,6 +112,31 @@ function App() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [formState, setFormState] = useState('idle');
 
+  useEffect(() => {
+    const revealItems = document.querySelectorAll('[data-reveal]');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+      revealItems.forEach((item) => item.classList.add('is-visible'));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.14 },
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, []);
+
   const closeMenu = () => setMenuOpen(false);
 
   async function handleSubmit(event) {
@@ -165,7 +192,7 @@ function App() {
 
       <main>
         <section className="hero" id="top" aria-labelledby="hero-title">
-          <div className="hero-copy">
+          <div className="hero-copy" data-reveal>
             <p className="eyebrow"><span className="status-dot" /> Based in London, UK</p>
             <h1 id="hero-title">I build reliable digital products, from the first idea to launch.</h1>
             <p className="hero-intro">
@@ -176,6 +203,7 @@ function App() {
               <a className="button button-primary" href="#work">View selected work <ArrowUpRight /></a>
               <a className="button button-secondary" href="/Roberto-Ulloa-CV.pdf" download>Download CV</a>
             </div>
+            <a className="hero-email" href="mailto:roanuc8@gmail.com">Available for opportunities <span>roanuc8@gmail.com</span> <ArrowUpRight /></a>
             <div className="hero-meta" aria-label="Professional highlights">
               <div><strong>Full-stack</strong><span>Web, mobile & APIs</span></div>
               <div><strong>QA-led</strong><span>Tested for real users</span></div>
@@ -183,7 +211,7 @@ function App() {
             </div>
           </div>
 
-          <div className="hero-portrait-wrap" aria-hidden="true">
+          <div className="hero-portrait-wrap" data-reveal aria-hidden="true">
             <div className="portrait-orbit orbit-one" />
             <div className="portrait-orbit orbit-two" />
             <div className="portrait-panel">
@@ -194,8 +222,14 @@ function App() {
           </div>
         </section>
 
+        <section className="opportunity-strip" aria-label="Professional availability" data-reveal>
+          <p><span className="availability-pulse" /> Open to opportunities</p>
+          <span>Software development · QA engineering · technical analysis</span>
+          <a href="mailto:roanuc8@gmail.com">Let&apos;s connect <ArrowUpRight /></a>
+        </section>
+
         <section className="section work-section" id="work" aria-labelledby="work-title">
-          <div className="section-heading split-heading">
+          <div className="section-heading split-heading" data-reveal>
             <div>
               <p className="eyebrow">Selected work</p>
               <h2 id="work-title">Recent projects with real product thinking.</h2>
@@ -207,12 +241,25 @@ function App() {
 
           <div className="project-grid">
             {projects.map((project, index) => (
-              <article className={`project-card ${project.accent}`} key={project.title}>
-                <div className="project-art" aria-hidden="true">
-                  <span className="art-number">0{index + 1}</span>
-                  <span className="art-line line-a" />
-                  <span className="art-line line-b" />
-                  <span className="art-shape" />
+              <article className={`project-card ${project.accent}`} data-reveal key={project.title}>
+                <div className={`project-art ${project.visual ? 'project-art--visual' : ''}`}>
+                  {project.visual === 'nimble' && (
+                    <div className="nimble-screens" aria-label="Nimble Chicago mobile app screenshots">
+                      <img src="/projects/nimble-screen-home.jpg" alt="Nimble Chicago app home screen" />
+                      <img src="/projects/nimble-screen-menu.jpg" alt="Nimble Chicago app menu screen" />
+                    </div>
+                  )}
+                  {project.visual === 'coda' && (
+                    <img className="coda-mockup" src="/projects/coda-product-mockup.jpg" alt="Coda Square custom mobile product mockup" />
+                  )}
+                  {!project.visual && (
+                    <div className="project-art-graphic" aria-hidden="true">
+                      <span className="art-number">0{index + 1}</span>
+                      <span className="art-line line-a" />
+                      <span className="art-line line-b" />
+                      <span className="art-shape" />
+                    </div>
+                  )}
                 </div>
                 <div className="project-content">
                   <p className="project-eyebrow">{project.eyebrow}</p>
@@ -235,11 +282,11 @@ function App() {
         </section>
 
         <section className="section about-section" id="about" aria-labelledby="about-title">
-          <div className="about-intro">
+          <div className="about-intro" data-reveal>
             <p className="eyebrow">How I work</p>
             <h2 id="about-title">Technical enough to build it. Curious enough to make it better.</h2>
           </div>
-          <div className="about-body">
+          <div className="about-body" data-reveal>
             <p>
               My work sits at the meeting point of development, quality, and delivery. I build in JavaScript and TypeScript,
               work comfortably across React, React Native, and Next.js, and use testing as a way to protect the people using the product.
@@ -252,13 +299,13 @@ function App() {
         </section>
 
         <section className="skills-section" aria-labelledby="skills-title">
-          <div className="skills-topline">
+          <div className="skills-topline" data-reveal>
             <p className="eyebrow">Capabilities</p>
             <h2 id="skills-title">A balanced development toolkit.</h2>
           </div>
           <div className="skill-grid">
             {skillGroups.map((group) => (
-              <article className="skill-group" key={group.name}>
+              <article className="skill-group" data-reveal key={group.name}>
                 <h3>{group.name}</h3>
                 <ul>
                   {group.skills.map((skill) => <li key={skill}>{skill}</li>)}
@@ -269,13 +316,13 @@ function App() {
         </section>
 
         <section className="section experience-section" id="experience" aria-labelledby="experience-title">
-          <div className="section-heading">
+          <div className="section-heading" data-reveal>
             <p className="eyebrow">Experience</p>
             <h2 id="experience-title">A developer&apos;s eye for detail, backed by hands-on QA and analysis.</h2>
           </div>
           <ol className="timeline">
             {experience.map((item) => (
-              <li key={`${item.organisation}-${item.period}`}>
+              <li data-reveal key={`${item.organisation}-${item.period}`}>
                 <p className="timeline-period">{item.period}</p>
                 <div className="timeline-role">
                   <h3>{item.role}</h3>
@@ -289,7 +336,7 @@ function App() {
         </section>
 
         <section className="contact-section" id="contact" aria-labelledby="contact-title">
-          <div className="contact-copy">
+          <div className="contact-copy" data-reveal>
             <p className="eyebrow">Get in touch</p>
             <h2 id="contact-title">Let&apos;s make something useful.</h2>
             <p>
@@ -301,7 +348,7 @@ function App() {
             </div>
           </div>
 
-          <form className="contact-form" name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit}>
+          <form className="contact-form" data-reveal name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit}>
             <input type="hidden" name="form-name" value="contact" />
             <p className="honeypot"><label>Do not fill this out <input name="bot-field" /></label></p>
             <label>
