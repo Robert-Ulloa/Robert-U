@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import profileImage from '../assets/profile.webp';
 import {
-  linkedinUrl, proofPoints, marquee, featuredProject, projects, services, skillGroups, experience,
+  codaUrl, formEndpoint, linkedinUrl, proofPoints, marquee, featuredProject, projects, services, skillGroups, experience,
 } from '../data/site';
 import { posts, formatDate } from '../data/posts';
 import { useReveal, usePageMeta } from '../hooks/effects';
@@ -66,15 +66,16 @@ function ContactForm() {
     event.preventDefault();
     setFormState('sending');
     try {
-      const body = new URLSearchParams({
-        'form-name': 'contact',
-        subject: 'New portfolio enquiry from robertoulloa.com',
-        ...formData,
-      }).toString();
-      const response = await fetch('/', {
+      const response = await fetch(formEndpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body,
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          _subject: `Portfolio enquiry from ${formData.name}`,
+          _replyto: formData.email,
+          source: 'robertoulloa.com',
+          _gotcha: event.currentTarget.elements._gotcha?.value ?? '',
+        }),
       });
       if (!response.ok) throw new Error('Message could not be sent');
       setFormData({ name: '', email: '', message: '' });
@@ -85,10 +86,8 @@ function ContactForm() {
   }
 
   return (
-    <form className="contact-form spotlight" data-reveal name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit}>
-      <input type="hidden" name="form-name" value="contact" />
-      <input type="hidden" name="subject" value="New portfolio enquiry from robertoulloa.com" />
-      <p className="honeypot"><label>Do not fill this out <input name="bot-field" tabIndex={-1} /></label></p>
+    <form className="contact-form spotlight" data-reveal name="contact" onSubmit={handleSubmit}>
+      <p className="honeypot" aria-hidden="true"><label>Leave this empty <input name="_gotcha" tabIndex={-1} autoComplete="off" /></label></p>
       <div className="form-row">
         <label>
           Name
@@ -342,6 +341,18 @@ export default function Home() {
               </li>
             ))}
           </ol>
+
+          <a className="coda-band spotlight" data-reveal href={codaUrl} target="_blank" rel="noreferrer">
+            <div>
+              <p className="eyebrow">Also building · Coda Square</p>
+              <h3>Need a custom ordering app for your café or shop?</h3>
+              <p>
+                Through Coda Square I build custom ordering apps and websites for independent businesses, connected to
+                Square and owned by you. The same approach behind the Nimble Chicago launch.
+              </p>
+            </div>
+            <span className="button button-primary">Visit Coda Square <ArrowUpRight /></span>
+          </a>
         </div>
       </section>
 

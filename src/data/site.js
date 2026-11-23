@@ -1,6 +1,10 @@
 export const githubUrl = 'https://github.com/Robert-Ulloa';
+export const codaUrl = 'https://codasquare.com/';
 export const linkedinUrl = 'https://www.linkedin.com/in/roberto-antonio-ulloa-cruz-30135b317/';
 export const cvUrl = '/Roberto-Ulloa-CV.pdf';
+
+// Contact form endpoint (Formspree). Form IDs are public by design: they ship in client code.
+export const formEndpoint = 'https://formspree.io/f/xkovnndo';
 
 export const navItems = [
   { id: 'work', label: 'Work' },
@@ -45,7 +49,7 @@ export const projects = [
       'A product-focused marketing site for a studio building custom apps and websites for coffee shops, on a reusable TypeScript and Tailwind foundation.',
     tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
     links: [
-      { label: 'Visit site', href: 'https://codasquare-website.vercel.app' },
+      { label: 'Visit codasquare.com', href: 'https://codasquare.com/' },
       { label: 'View code', href: 'https://github.com/Robert-Ulloa/codasquare-website' },
     ],
     visual: 'coda',

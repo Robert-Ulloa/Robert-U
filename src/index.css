@@ -368,6 +368,7 @@ h2 { font-size: clamp(2.1rem, 4.2vw, 3.5rem); font-weight: 800; letter-spacing: 
 .contact-form label { color: var(--muted); display: grid; font-size: .88rem; font-weight: 700; gap: .45rem; }
 .contact-form input:not([type='hidden']), .contact-form textarea { background: rgba(0, 0, 0, .3); border: 1px solid var(--line-strong); border-radius: 10px; color: var(--text); padding: .8rem .9rem; resize: vertical; transition: border-color .2s ease, box-shadow .25s ease, background .2s ease; width: 100%; }
 .contact-form textarea::placeholder { color: var(--faint); }
+.contact-form input:-webkit-autofill, .contact-form input:-webkit-autofill:hover, .contact-form input:-webkit-autofill:focus { -webkit-text-fill-color: var(--text); box-shadow: 0 0 0 1000px #0b1310 inset; caret-color: var(--text); transition: background-color 9999s ease-out; }
 .contact-form input:focus, .contact-form textarea:focus { background: rgba(0, 0, 0, .45); border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255, 122, 77, .15), 0 0 24px -6px rgba(255, 122, 77, .5); outline: 0; }
 .form-footer { align-items: center; display: flex; flex-wrap: wrap; gap: 1rem; }
 .form-message { color: var(--mint); font-size: .92rem; font-weight: 600; line-height: 1.5; margin: 0; }
@@ -536,3 +537,12 @@ h2 { font-size: clamp(2.1rem, 4.2vw, 3.5rem); font-weight: 800; letter-spacing: 
   .cv-edu h3 { font-size: 10pt; }
   a { color: inherit; text-decoration: none; }
 }
+
+/* Coda Square promo band (Experience section) */
+.coda-band { align-items: center; background: radial-gradient(circle at 0% 0%, rgba(255, 122, 77, .16), transparent 55%), radial-gradient(circle at 100% 100%, rgba(31, 138, 104, .22), transparent 55%), var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius); display: grid; gap: 1.5rem 3rem; grid-template-columns: minmax(0, 1fr) auto; margin-top: 3rem; padding: clamp(1.75rem, 4vw, 2.75rem); transition: border-color .35s ease, box-shadow .4s ease, transform .5s var(--ease); }
+.coda-band > * { position: relative; z-index: 3; }
+.coda-band:hover { border-color: rgba(255, 179, 102, .45); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .8), 0 0 50px -18px rgba(255, 122, 77, .45); transform: translateY(-4px); }
+.coda-band h3 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); letter-spacing: -.035em; line-height: 1.2; margin-bottom: .7rem; }
+.coda-band p:not(.eyebrow) { color: var(--muted); line-height: 1.65; margin: 0; max-width: 40em; }
+.coda-band:hover .button-primary::after { transform: translateX(120%); }
+@media (max-width: 860px) { .coda-band { grid-template-columns: 1fr; } .coda-band .button { justify-self: start; } }

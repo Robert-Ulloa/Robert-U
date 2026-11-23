@@ -15,7 +15,7 @@ The source code for this portfolio is available on GitHub: [https://github.com/R
 - **Selected work**: A featured Nimble Chicago case study plus supporting projects.
 - **Services, toolkit and experience**: Development, QA, release and data-analysis strengths.
 - **Blog**: Short engineering write-ups at `/blog`, stored in `src/data/posts.js`.
-- **Contact form**: Netlify Forms handling (no email address is published on the site). Requires **Form detection** to be enabled in Netlify (Site configuration → Forms), followed by a redeploy.
+- **Contact form**: Sends via Formspree (`formEndpoint` in `src/data/site.js`); messages arrive tagged "Portfolio enquiry". No email address is published on the site.
 - **CV**: A web version at `/cv` with a matching PDF download.
 - **Dark theme with motion**: Ambient background, scroll reveals and cursor-follow card glow, all disabled for users who prefer reduced motion.
 
@@ -41,7 +41,7 @@ The phone number and email are intentionally left off the public CV.
 - **React** + **React Router**: Component-based UI with client-side routes for the blog.
 - **Vite**: Used as the build tool for fast development and optimized production builds.
 - **CSS**: Custom responsive styling and accessible interactions.
-- **Netlify Forms**: Contact form capture when deployed through Netlify.
+- **Formspree**: Contact form delivery.
 
 ## How to Run Locally
 
