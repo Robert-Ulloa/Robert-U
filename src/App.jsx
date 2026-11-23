@@ -10,7 +10,7 @@ const projects = [
     eyebrow: 'Live product · Full-stack build and release',
     summary:
       'A mobile ordering experience taken from build through app-store release, with a React Native app, Next.js web app, Node.js backend, PostgreSQL, and Square POS integration.',
-    tags: ['React Native', 'Next.js', 'PostgreSQL', 'Square API'],
+    tags: ['Square POS API', 'Inventory workflows', 'React Native', 'iOS & Android release'],
     links: [
       { label: 'Visit product', href: 'https://nimblechicago.com/' },
     ],
@@ -56,6 +56,37 @@ const skillGroups = [
   {
     name: 'Ship with confidence',
     skills: ['REST APIs', 'PostgreSQL', 'SQL', 'Git/GitHub', 'Jira', 'CI/CD'],
+  },
+];
+
+const deliveryFocus = [
+  {
+    number: '01',
+    title: 'Square integration & operations',
+    description:
+      'Connect ordering and inventory workflows to Square POS APIs, then trace discrepancies across API responses, application logic, and database records.',
+    details: ['Square POS APIs', 'Catalog & inventory', 'Data reconciliation'],
+  },
+  {
+    number: '02',
+    title: 'Mobile app development',
+    description:
+      'Build mobile product experiences in React Native—from core user flows and backend connections to release readiness for iOS and Android.',
+    details: ['React Native', 'iOS & Android', 'App-store release'],
+  },
+  {
+    number: '03',
+    title: 'Web, APIs & data',
+    description:
+      'Deliver practical web products and the services behind them with Next.js, Node.js, REST APIs, PostgreSQL, and clear operational interfaces.',
+    details: ['Next.js & Node.js', 'REST APIs', 'PostgreSQL'],
+  },
+  {
+    number: '04',
+    title: 'QA & release confidence',
+    description:
+      'Test the journeys that matter with API, functional, accessibility, and regression testing—so a release is dependable before real users find the edge cases.',
+    details: ['API testing', 'Accessibility', 'Regression testing'],
   },
 ];
 
@@ -184,6 +215,7 @@ function App() {
 
         <nav className={`site-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Primary navigation">
           <a href="#work" onClick={closeMenu}>Work</a>
+          <a href="#focus" onClick={closeMenu}>Focus</a>
           <a href="#about" onClick={closeMenu}>About</a>
           <a href="#experience" onClick={closeMenu}>Experience</a>
           <a className="nav-contact" href="#contact" onClick={closeMenu}>Let&apos;s talk</a>
@@ -279,6 +311,33 @@ function App() {
               </article>
             ))}
           </div>
+        </section>
+
+        <section className="delivery-section" id="focus" aria-labelledby="delivery-title">
+          <div className="delivery-heading" data-reveal>
+            <div>
+              <p className="eyebrow">Product & platform focus</p>
+              <h2 id="delivery-title">The work behind a product people can rely on.</h2>
+            </div>
+            <p>
+              From a Square-connected ordering flow to a store-ready mobile app, I work where product experience meets the systems and operational details underneath it.
+            </p>
+          </div>
+          <div className="delivery-grid">
+            {deliveryFocus.map((focus) => (
+              <article className="delivery-card" data-reveal key={focus.number}>
+                <span className="delivery-number">{focus.number}</span>
+                <h3>{focus.title}</h3>
+                <p>{focus.description}</p>
+                <ul aria-label={`${focus.title} details`}>
+                  {focus.details.map((detail) => <li key={detail}>{detail}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <a className="delivery-contact" data-reveal href="mailto:roanuc8@gmail.com">
+            Need Square, mobile, or quality-focused delivery? Let&apos;s talk <ArrowUpRight />
+          </a>
         </section>
 
         <section className="section about-section" id="about" aria-labelledby="about-title">
