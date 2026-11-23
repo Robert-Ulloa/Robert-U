@@ -108,6 +108,14 @@ export default function Layout() {
             >
               Blog
             </Link>
+            <Link
+              to="/cv"
+              onClick={closeMenu}
+              className={pathname === '/cv' ? 'is-active' : ''}
+              aria-current={pathname === '/cv' ? 'page' : undefined}
+            >
+              CV
+            </Link>
             <Link className="nav-contact" to="/#contact" onClick={closeMenu}>Let&apos;s talk</Link>
           </nav>
         </div>

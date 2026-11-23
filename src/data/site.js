@@ -125,7 +125,7 @@ export const experience = [
       'Designed, built and launched a full-stack mobile ordering app, integrated Square POS for orders and inventory, tested API and release edge cases, and managed submission to both app stores.',
   },
   {
-    period: '2025',
+    period: 'Jan – Sep 2025',
     role: 'QA engineer & junior developer',
     organisation: 'Focus State · Blue Chip Worldwide',
     detail:

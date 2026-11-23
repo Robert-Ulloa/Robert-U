@@ -16,13 +16,25 @@ The source code for this portfolio is available on GitHub: [https://github.com/R
 - **Services, toolkit and experience**: Development, QA, release and data-analysis strengths.
 - **Blog**: Short engineering write-ups at `/blog`, stored in `src/data/posts.js`.
 - **Contact form**: Netlify Forms handling (no email address is published on the site). Requires **Form detection** to be enabled in Netlify (Site configuration → Forms), followed by a redeploy.
-- **CV download**: A public PDF version of the CV.
+- **CV**: A web version at `/cv` with a matching PDF download.
 - **Dark theme with motion**: Ambient background, scroll reveals and cursor-follow card glow, all disabled for users who prefer reduced motion.
 
 ## Editing content
 
 All page copy lives in `src/data/site.js` (projects, services, skills, experience) and `src/data/posts.js` (blog posts).
 To add a post, add an object to the `posts` array and a matching `<url>` entry in `public/sitemap.xml`.
+
+## Updating the CV
+
+The CV lives in one place: `src/data/cv.js`. The `/cv` page renders it, and the downloadable
+`public/Roberto-Ulloa-CV.pdf` is printed from that same page, so the two always match.
+
+1. Edit `src/data/cv.js`.
+2. Run `npm run dev` and open `http://localhost:5173/cv`.
+3. Print the page (Cmd+P) → **Save as PDF**, paper size **A4**, **Background graphics** on.
+4. Save it over `public/Roberto-Ulloa-CV.pdf`.
+
+The phone number and email are intentionally left off the public CV.
 
 ## Technologies Used
 

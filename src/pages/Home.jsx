@@ -2,13 +2,13 @@ import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import profileImage from '../assets/profile.webp';
 import {
-  cvUrl, linkedinUrl, proofPoints, marquee, featuredProject, projects, services, skillGroups, experience,
+  linkedinUrl, proofPoints, marquee, featuredProject, projects, services, skillGroups, experience,
 } from '../data/site';
 import { posts, formatDate } from '../data/posts';
 import { useReveal, usePageMeta } from '../hooks/effects';
 import CountUp from '../components/CountUp';
 import { SocialLinks } from '../components/Layout';
-import { ArrowDown, ArrowUpRight, DownloadIcon } from '../components/Icons';
+import { ArrowDown, ArrowUpRight } from '../components/Icons';
 
 function SplitWords({ text, offset = 0 }) {
   const words = text.split(' ');
@@ -154,7 +154,7 @@ export default function Home() {
             </p>
             <div className="hero-actions intro-fade" style={{ '--d': '.7s' }}>
               <Link className="button button-primary" to="/#work">See my work <ArrowDown /></Link>
-              <a className="button button-secondary" href={cvUrl} download>Download CV <DownloadIcon /></a>
+              <Link className="button button-secondary" to="/cv">View CV <ArrowUpRight /></Link>
             </div>
             <SocialLinks className="hero-social intro-fade" />
           </div>
@@ -326,7 +326,7 @@ export default function Home() {
               <h2 id="experience-title">Development, QA and data analysis, in real teams.</h2>
             </div>
             <div className="heading-actions">
-              <a className="button button-secondary" href={cvUrl} download>Download full CV <DownloadIcon /></a>
+              <Link className="button button-secondary" to="/cv">View full CV <ArrowUpRight /></Link>
             </div>
           </div>
           <ol className="timeline">
@@ -383,7 +383,7 @@ export default function Home() {
             </p>
             <div className="contact-links">
               <a href={linkedinUrl} target="_blank" rel="noreferrer">Connect on LinkedIn <ArrowUpRight /></a>
-              <a href={cvUrl} download>Download CV <DownloadIcon /></a>
+              <Link to="/cv">View CV <ArrowUpRight /></Link>
             </div>
           </div>
           <ContactForm />
